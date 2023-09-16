@@ -28,11 +28,10 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    # path('', include(core_urls)),
-    # path('user/', include(user_urls)),
     path('', include('social_django.urls', namespace='social')),
     path('i18n/', include('django.conf.urls.i18n'))
+    # path('', include(core_urls)),
+    # path('user/', include(user_urls)),
 ]
 
 
