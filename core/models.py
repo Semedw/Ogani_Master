@@ -27,7 +27,7 @@ class Product(BaseModel):
     heart = models.IntegerField(default=0)
     retweet = models.IntegerField(default=0)
     category = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, related_name='product')
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
 
     class Meta:

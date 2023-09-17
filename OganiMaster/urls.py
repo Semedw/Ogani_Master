@@ -31,6 +31,7 @@ urlpatterns = [
     path('', include('social_django.urls', namespace='social')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('core.api.urls')),
     
     # path('', include(core_urls)),
     # path('user/', include(user_urls)),
