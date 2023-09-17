@@ -129,13 +129,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 
-USE_I18N = True
+# # USE_I18N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -182,21 +182,31 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 
 # modeltranslation
-gettext = lambda s: s
 LANGUAGES = [
-    ('en', gettext('English')),
-    ('es', gettext('Espanol')),
-    ('az', gettext('Azerbaijani')),
+    ('en', 'English'),
+    ('az', 'Azerbaijani'),
+    ('es', 'Espanol'),
 ]
+
 
 import os
 
-LOCALE_PATH = [
-    os.path.join(BASE_DIR, 'locale')
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
 ]
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-# LANGUAGE_CODE = "en" # <- default language
+MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
+MODELTRANSLATION_LANGUAGES = ("az", "en", "es")
+
+
+LANGUAGE_CODE = 'en'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
 
 
 
