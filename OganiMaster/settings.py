@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rosetta',
     'rest_framework',
     'drf_yasg',
+    'django.contrib.staticfiles',  # required for serving swagger UI's CSS/js files
     
 ]
 
