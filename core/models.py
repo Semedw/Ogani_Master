@@ -48,7 +48,7 @@ class Blog(BaseModel):
     image = models.ImageField(upload_to='blog', null=True, blank = True)
     comment = models.IntegerField(default=0)
     category = models.ForeignKey('BlogCategory', on_delete=models.CASCADE, related_name='blog')
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     class Meta:
         verbose_name = _('Blog')
@@ -65,7 +65,7 @@ class Blog(BaseModel):
 class ProductCategory(BaseModel):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='department_image', null=True, blank=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
 
     class Meta:
@@ -93,6 +93,9 @@ class BlogCategory(BaseModel):
     
 
 class Banner(BaseModel):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    category = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, related_name='banner')
     img = models.ImageField(upload_to='blog', null=True, blank = True)
 
 
@@ -123,7 +126,7 @@ class Discount_Product(BaseModel):
     category = models.ForeignKey('Discount_category', on_delete=models.CASCADE, related_name='product')
     color = models.ForeignKey('Colors', on_delete=models.CASCADE, related_name='%(class)s_product')
     size = models.ForeignKey('Size', on_delete=models.CASCADE, related_name='%(class)s_product')
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, null=True, blank=True)
 
     
     class Meta:
