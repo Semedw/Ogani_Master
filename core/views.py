@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
+from django.db.models import Q
+from django.utils import timezone
 
 
 from core.forms import ContactForm
@@ -25,16 +27,41 @@ def index(request):
     return render(request, 'index.html', context)
 
 def shop(request):
+
+    shop_search_input = request.GET.get('news')
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+    category_id = request.GET.get('category')
+
+    # Initial filters with Q()
+    filters = Q()
+
+    if shop_search_input:
+        filters &= Q(title__icontains=shop_search_input)
+
+    if start_date:
+        if not end_date:
+            end_date = timezone.now().date()
+        filters &= Q(created_at__date__range=[start_date, end_date])
+
+    if category_id:
+        filters &= Q(category=category_id)
+
+    # Fetch the news based on built filters
+    products = Product.objects.filter(filters) if filters else Product.objects.all()
+
+    product_count = products.count()
+
     context = {
         'title' : 'Ogani Shop',
         'departments' : ProductCategory.objects.all(),
         'latest_products' : Product.objects.all().order_by('-created_at'),
-        'all_products' : Product.objects.all(),
-        'product_count' : Product.objects.count(),
+        'all_products' : products,
+        'product_count' : product_count,
         'discount_objects' : Discount_Product.objects.all(),
         'colors' : Colors.objects.all(),
         'sizes' : Size.objects.all(),
-
+        'search_input' : shop_search_input if shop_search_input else ''
     }
 
     return render(request, 'shop-grid.html', context)
