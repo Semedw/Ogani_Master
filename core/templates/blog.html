@@ -144,12 +144,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
-                        <div class="blog__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit"><span class="icon_search"></span></button>
-                            </form>
-                        </div>
+                        
                         <div class="blog__sidebar__item">
                             <h4>Categories</h4>
                             <ul>
@@ -192,6 +187,12 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-7">
+                    <div class="blog__sidebar__search">
+                        <form action="#" method="GET">
+                            <input name="blog_search" type="text" placeholder="Search...", value="{{search_input}}">
+                            <button type="submit"><span class="icon_search"></span></button>
+                        </form>
+                    </div>
                     <div class="row">
                         {% for blog in blogs %}
                         <div class="col-lg-6 col-md-6 col-sm-6">

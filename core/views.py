@@ -40,12 +40,18 @@ def shop(request):
     return render(request, 'shop-grid.html', context)
 
 def blog(request):
-    context = {
-        'title' : 'Ogani Blog',
-        'departments' : BlogCategory.objects.all(),
-        'blogs' : Blog.objects.all(),
-        'recent' : Blog.objects.all().order_by('-created_at')
+    blog_search_input = request.GET.get('blog_search')
+    if blog_search_input is not None and blog_search_input != '':
+        blogs = Blog.objects.filter(title__icontains=blog_search_input)
+    else:
+        blogs = Blog.objects.all()
 
+    context = {
+        'title': 'Ogani Blog',
+        'departments': BlogCategory.objects.all(),
+        'blogs': blogs,
+        'search_input' : blog_search_input,
+        'recent': Blog.objects.all().order_by('-created_at')
     }
 
     return render(request, 'blog.html', context)
