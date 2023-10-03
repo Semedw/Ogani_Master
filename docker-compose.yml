@@ -12,3 +12,10 @@ services:
         POSTGRES_PASSWORD: 123456
         POSTGRES_USER: postgres
         POSTGRES_DB: Advance
+
+        
+    redis:
+        image: redis
+        restart: always
+        ports:
+            - 6379:6379
