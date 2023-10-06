@@ -178,25 +178,35 @@
                         </div>
                         <div class="sidebar__item sidebar__item__color--option">
                             <h4>Colors</h4>
-                            {% for color in colors %}
-                            <div class="sidebar__item__color sidebar__item__color--{{color.title|lower}}">
-                                <label for="white">
-                                    {{ color.title }}
-                                    <input type="radio" id="white">
-                                </label>
-                            </div>
-                            {% endfor %}
+                            <form action="" method="GET">
+                                {% for color in colors %}
+                                <div class="sidebar__item__color sidebar__item__color--{{ color.title|lower }}">
+                                    <label for="{{ color.title|lower }}">
+                                        <a href="?color_filter={{ color.id }}" style="color: black">
+                                            {{ color.title }}
+                                            <input name="color_filter" type="radio" id="{{ color.title|lower }}" style="display: none;">
+                                        </a>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </form>
                         </div>
+
                         <div class="sidebar__item">
                             <h4>Popular Size</h4>
-                            {% for size in sizes %}
-                            <div class="sidebar__item__size">
-                                <label for="large">
-                                    {{size.title}}
-                                    <input type="radio" id="large">
-                                </label>
-                            </div>
-                            {% endfor %}
+                            <form action="" method="GET">
+                                {% for size in sizes %}
+                                <div class="sidebar__item__size">
+                                    <label for="size_{{ size.title|lower }}">
+                                        <a href="?size_filter={{ size.id}}" style="color: black">
+                                            {{ size.title }}
+                                            <input type="radio" id="size_{{ size.title|lower }}" name="size_filter">
+                                        </a>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </form>
+                        </div>
 
                         <div class="sidebar__item">
                             <div class="latest-product__text">
@@ -233,7 +243,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
                 <div class="col-lg-9 col-md-7">
                     <div class="product__discount">
                         <div class="section-title product__discount__title">
@@ -270,7 +280,7 @@
                         <div class="blog__sidebar__search">
                             <form action="#" method="GET">
                                 <input name="shop_search" type="text" placeholder="Search..." value="{{search_input}}">
-                                <button type="submit" class="mt-4"><span class="icon_search"></span></button>
+                                <button type="submit" class=""><span class="icon_search"></span></button>
                                 <!-- <select name="category" id="" class="mt-3" style="width: 200px;">
                                     <option value="">Select Category</option>
                                     {% for category in departments %}
@@ -321,14 +331,26 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <!-- Pagination -->
+                    <div style="text-align: center;" class="mb-3">
+                        {% if all_products.has_previous %}
+                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Previous</a>
+                        {% endif %}
+
+                        {% for i in all_products.paginator.page_range %}
+                        {% if all_products.number == i %}
+                        <a href="?page={{ i }}" class="active btn btn-primary">{{ i }}</a>
+                        {% else %}
+                        <a href="?page={{ i }}" class="btn btn-primary">{{ i }}</a>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if all_products.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Next</a>
+                        {% endif %}
                     </div>
             </div>
-        
+        </div>
         </div>
     </section>
     <!-- Product Section End -->

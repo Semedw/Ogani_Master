@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.db.models import Q
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 
 from core.forms import ContactForm
@@ -30,6 +31,8 @@ def shop(request):
 
     shop_search_input = request.GET.get('shop_search')
     category_filter = request.GET.get('category_filter')
+    color_filter = request.GET.get('color_filter')
+    size_filter = request.GET.get('size_filter')
     # start_date = request.GET.get('start_date')
     # end_date = request.GET.get('end_date')
     # category_id = request.GET.get('category')
@@ -43,6 +46,12 @@ def shop(request):
     if category_filter:
         # filtered_data = ProductCategory.objects.filter(title=category_filter)
         filters &= Q(category=category_filter)
+    
+    if color_filter:
+        filters &= Q(color=color_filter)
+    
+    if size_filter:
+        filters &= Q(size=size_filter)
     # else:
     #     filtered_data = ProductCategory.objects.all()
 
@@ -59,18 +68,24 @@ def shop(request):
 
     product_count = products.count()
 
-    
+    # Pagination
+    paginator = Paginator(products, 6)
+    page = request.GET.get('page')
+    page_products = paginator.get_page(page)
+
 
     context = {
         'title' : 'Ogani Shop',
         'departments' : ProductCategory.objects.all(),
         'latest_products' : Product.objects.all().order_by('-created_at'),
-        'all_products' : products,
+        'all_products' : page_products,
         'product_count' : product_count,
         'discount_objects' : Discount_Product.objects.all(),
         'colors' : Colors.objects.all(),
         'sizes' : Size.objects.all(),
         'search_input' : shop_search_input if shop_search_input else '',
+        # 'products' : page_products,
+
         # 'filtered_data' : filtered_data,
 
     }
