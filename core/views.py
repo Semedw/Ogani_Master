@@ -101,7 +101,7 @@ def blog(request):
 
     context = {
         'title': 'Ogani Blog',
-        'departments': BlogCategory.objects.all(),
+        'departments': ProductCategory.objects.all(),
         'blogs': blogs,
         'search_input' : blog_search_input if blog_search_input else '',
         'recent': Blog.objects.all().order_by('-created_at')
