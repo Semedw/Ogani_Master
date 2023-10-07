@@ -44,7 +44,6 @@ def shop(request):
         filters &= Q(name__icontains=shop_search_input)
 
     if category_filter:
-        # filtered_data = ProductCategory.objects.filter(title=category_filter)
         filters &= Q(category=category_filter)
     
     if color_filter:
@@ -52,16 +51,6 @@ def shop(request):
     
     if size_filter:
         filters &= Q(size=size_filter)
-    # else:
-    #     filtered_data = ProductCategory.objects.all()
-
-    # if start_date:
-    #     if not end_date:
-    #         end_date = timezone.now().date()
-    #     filters &= Q(created_at__date__range=[start_date, end_date])
-
-    # if category_id:
-    #     filters &= Q(category=category_id)
 
     # Fetch the news based on built filters
     products = Product.objects.filter(filters) if filters else Product.objects.all()
@@ -94,17 +83,35 @@ def shop(request):
 
 def blog(request):
     blog_search_input = request.GET.get('blog_search')
-    if blog_search_input is not None and blog_search_input != '':
-        blogs = Blog.objects.filter(title__icontains=blog_search_input)
-    else:
-        blogs = Blog.objects.all()
+    start_date = request.GET.get('start_date')
+    end_date = request.GET.get('end_date')
+
+    filters = Q()
+
+    if blog_search_input:
+        filters &= Q(title__icontains=blog_search_input)
+    
+
+    if start_date:
+        if not end_date:
+            end_date = timezone.now().date()
+        filters &= Q(created_at__date__range=[start_date, end_date])
+
+    blogs = Blog.objects.filter(filters) if filters else Blog.objects.all()
+
+    # if blog_search_input is not None and blog_search_input != '':
+    #     blogs = Blog.objects.filter(title__icontains=blog_search_input)
+    # else:
+    #     blogs = Blog.objects.all()
 
     context = {
         'title': 'Ogani Blog',
         'departments': ProductCategory.objects.all(),
         'blogs': blogs,
         'search_input' : blog_search_input if blog_search_input else '',
-        'recent': Blog.objects.all().order_by('-created_at')
+        'recent': Blog.objects.all().order_by('-created_at'),
+        'start_date' : start_date,
+        'end_date' : end_date
     }
 
     return render(request, 'blog.html', context)
