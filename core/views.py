@@ -14,18 +14,41 @@ from core.models import (Blog, Product, Settings, ProductCategory,
 # Create your views here.
 
 def index(request):
-    context = {
-        'title' : 'Ogani Home',
-        'blogs' : Blog.objects.all().order_by('-created_at'),
-        'featureds' : Product.objects.all().order_by('-created_at'),
-        'latest_products' : Product.objects.all().order_by('-created_at'),
-        'toprated_products' : Product.objects.all().order_by('heart'),
-        'review_products' : Product.objects.all().order_by('-price'),
-        'departments' : ProductCategory.objects.all(),
 
-    }
+    home_search_input = request.GET.get('home_search')
 
-    return render(request, 'index.html', context)
+    product_filters = Q()
+    blog_filters = Q()
+
+    if home_search_input:
+
+        product_filters &= Q(name__icontains=home_search_input)
+
+        blog_filters &= Q(title__icontains=home_search_input)
+
+        products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
+        blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+
+        context = {
+            'products' : products,
+            'blogs' : blogs,
+            
+        }
+
+        return render(request, 'search.html', context)
+    else:
+        context = {
+            'title' : 'Ogani Home',
+            'blogs' : Blog.objects.all().order_by('-created_at'),
+            'featureds' : Product.objects.all().order_by('-created_at'),
+            'latest_products' : Product.objects.all().order_by('-created_at'),
+            'toprated_products' : Product.objects.all().order_by('heart'),
+            'review_products' : Product.objects.all().order_by('-price'),
+            'departments' : ProductCategory.objects.all(),
+
+        }
+
+        return render(request, 'index.html', context)
 
 def shop(request):
 
@@ -194,3 +217,28 @@ def departments(request,slug):
     }
 
     return render(request, 'departments.html', context)
+
+
+# def search(request):
+#     home_search_input = request.GET.get('home_search')
+
+
+#     filters = Q()
+
+#     if home_search_input:
+#         filters &= Q(name__icontains=home_search_input)
+
+#     if home_search_input:
+#         filters &= Q(title__icontains=home_search_input)
+
+#     products = Product.objects.filter(filters) if filters else Product.objects.all()
+#     blogs = Blog.objects.filter(filters) if filters else Blog.objects.all()
+
+#     context = {
+#         'products' : products,
+#         'blogs' : blogs,
+
+#     }
+
+
+#     return render(request, 'search.html', context)

@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
-    'user',
+    'core', #core app
+    'user', #user app
     'ckeditor',
     'social_django',
     'rosetta',
