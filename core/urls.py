@@ -2,7 +2,7 @@ from django.urls import path
 
 from core.views import (index, shop, blog, contact, shop_details, 
                         blog_details, checkout, shopping_cart,
-                        discount_details, departments,
+                        discount_details, departments, search
 )
 
 urlpatterns = [
@@ -16,6 +16,6 @@ urlpatterns = [
     path('checkout/', checkout, name='checkout'),
     path('shopping-cart/', shopping_cart, name='shopping_cart'),
     path('departments/<slug:slug>', departments, name='departments'),
-    # path('search/', search, name="search")
+    path('search/', search, name="search")
     
 ]

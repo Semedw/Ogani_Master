@@ -339,26 +339,24 @@ def departments(request,slug):
     return render(request, 'departments.html', context)
 
 
-# def search(request):
-#     home_search_input = request.GET.get('home_search')
+def search(request):
+    search_hero_search_input = request.GET.get('search_hero_search')
 
+    product_filters = Q()
+    blog_filters = Q()
 
-#     filters = Q()
+    if search_hero_search_input:
+        product_filters |= Q(name__icontains=search_hero_search_input)
+        blog_filters |= Q(title__icontains=search_hero_search_input)
 
-#     if home_search_input:
-#         filters &= Q(name__icontains=home_search_input)
+    products = Product.objects.filter(product_filters)
+    blogs = Blog.objects.filter(blog_filters)
 
-#     if home_search_input:
-#         filters &= Q(title__icontains=home_search_input)
+    context = {
+        'title': 'Search',
+        'products': products,
+        'blogs': blogs,
+        'departments': ProductCategory.objects.all(),
+    }
 
-#     products = Product.objects.filter(filters) if filters else Product.objects.all()
-#     blogs = Blog.objects.filter(filters) if filters else Blog.objects.all()
-
-#     context = {
-#         'products' : products,
-#         'blogs' : blogs,
-
-#     }
-
-
-#     return render(request, 'search.html', context)
+    return render(request, 'search.html', context)

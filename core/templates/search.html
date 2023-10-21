@@ -30,12 +30,8 @@
         <div class="col-lg-9">
           <div class="hero__search">
             <div class="hero__search__form">
-              <form action="#">
-                <div class="hero__search__categories">
-                  All Categories
-                  <span class="arrow_carrot-down"></span>
-                </div>
-                <input type="text" placeholder="What do you need?">
+              <form action="{% url 'search' %}">
+                <input name="search_hero_search" type="text" placeholder="What do you need?">
                 <button type="submit" class="site-btn">SEARCH</button>
               </form>
             </div>
@@ -58,7 +54,7 @@
   <!-- Search Results -->
   <div class="container">
     <!-- Product Results -->
-    <h2 class="section-title">Products</h2>
+    <h3 class="section-title">Products</h3>
     <div class="row">
       {% for product in products %}
       <div class="col-lg-4 col-md-6 col-sm-6">
@@ -82,7 +78,7 @@
 
   <!-- Blogs Results -->
   <section>
-    <h2 class="section-title mt-5">Blogs</h2>
+    <h3 class="section-title mt-5">Blogs</h3>
     <div class="row">
       {% for blog in blogs %}
       <div class="col-lg-3 col-md-3 col-sm-6">
