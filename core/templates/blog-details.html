@@ -108,7 +108,7 @@
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input name="blog_details_hero_search" type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -283,8 +283,8 @@
                                 <li><i class="fa fa-calendar-o"></i>{{ blog.created_at }}</li>
                                 <li><i class="fa fa-comment-o"></i>{{ blog.comment }}</li>
                             </ul>
-                            <h5><a href="{% url 'blog_details' blog.id %}">{{ blog.title }}</a></h5>
-                            <p>{{ blog.content }}</p>
+                            <h5><a href="{% url 'blog_details' blog.slug %}">{{ blog.title }}</a></h5>
+                            <p>{{ blog.content|safe }}</p>
                         </div>
                     </div>
                 </div>

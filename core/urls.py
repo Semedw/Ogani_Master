@@ -12,9 +12,9 @@ urlpatterns = [
     path('contact/', contact, name='contact'),
     path('shop-details/<slug:slug>/', shop_details, name='shop_details' ),
     path('blog-details/<slug:slug>/', blog_details, name='blog_details'),
+    path('discount-details/<slug:slug>/', discount_details, name='discount_details'),
     path('checkout/', checkout, name='checkout'),
     path('shopping-cart/', shopping_cart, name='shopping_cart'),
-    path('discount-details/<slug:slug>/', discount_details, name='discount_details'),
     path('departments/<slug:slug>', departments, name='departments'),
     # path('search/', search, name="search")
     

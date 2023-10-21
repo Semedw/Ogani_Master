@@ -30,9 +30,10 @@ def index(request):
         blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
 
         context = {
+            'title' : 'Search',
             'products' : products,
             'blogs' : blogs,
-            
+            'departments' : ProductCategory.objects.all(),
         }
 
         return render(request, 'search.html', context)
@@ -51,6 +52,29 @@ def index(request):
         return render(request, 'index.html', context)
 
 def shop(request):
+
+    shop_hero_search_input = request.GET.get('shop_hero_search')
+
+    product_filters = Q()
+    blog_filters = Q()
+
+    if shop_hero_search_input:
+
+        product_filters &= Q(name__icontains=shop_hero_search_input)
+
+        blog_filters &= Q(title__icontains=shop_hero_search_input)
+
+        products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
+        blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+
+        context = {
+            'title' : 'Search',
+            'products' : products,
+            'blogs' : blogs,
+            'departments' : ProductCategory.objects.all(),
+        }
+
+        return render(request, 'search.html', context)
 
     shop_search_input = request.GET.get('shop_search')
     category_filter = request.GET.get('category_filter')
@@ -105,6 +129,31 @@ def shop(request):
     return render(request, 'shop-grid.html', context)
 
 def blog(request):
+
+    blog_hero_search_input = request.GET.get('blog_hero_search')
+
+    product_filters = Q()
+    blog_filters = Q()
+
+    if blog_hero_search_input:
+
+        product_filters &= Q(name__icontains=blog_hero_search_input)
+
+        blog_filters &= Q(title__icontains=blog_hero_search_input)
+
+        products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
+        blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+
+        context = {
+            'title' : 'Search',
+            'products' : products,
+            'blogs' : blogs,
+            'departments' : ProductCategory.objects.all(),
+        }
+
+        return render(request, 'search.html', context)
+
+
     blog_search_input = request.GET.get('blog_search')
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
@@ -140,6 +189,29 @@ def blog(request):
     return render(request, 'blog.html', context)
 
 def contact(request):
+
+    contact_hero_search_input = request.GET.get('contact_hero_search')
+
+    product_filters = Q()
+    blog_filters = Q()
+
+    if contact_hero_search_input:
+
+        product_filters &= Q(name__icontains=contact_hero_search_input)
+
+        blog_filters &= Q(title__icontains=contact_hero_search_input)
+
+        products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
+        blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+
+        context = {
+            'title' : 'Search',
+            'products' : products,
+            'blogs' : blogs,
+            'departments' : ProductCategory.objects.all(),
+        }
+
+        return render(request, 'search.html', context)
     
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -159,6 +231,30 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 def shop_details(request, slug):
+
+    shop_details_hero_search_input = request.GET.get('shop_details_hero_search')
+
+    product_filters = Q()
+    blog_filters = Q()
+
+    if shop_details_hero_search_input:
+
+        product_filters &= Q(name__icontains=shop_details_hero_search_input)
+
+        blog_filters &= Q(title__icontains=shop_details_hero_search_input)
+
+        products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
+        blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+
+        context = {
+            'title' : 'Search',
+            'products' : products,
+            'blogs' : blogs,
+            'departments' : ProductCategory.objects.all(),
+        }
+
+        return render(request, 'search.html', context)
+
     context = {
         'title' : ' Ogani Shop Details',
         'departments' : ProductCategory.objects.all(),
@@ -170,6 +266,30 @@ def shop_details(request, slug):
     return render(request, 'shop-details.html', context)
 
 def blog_details(request, slug):
+
+    blog_details_hero_search_input = request.GET.get('blog_details_hero_search')
+
+    product_filters = Q()
+    blog_filters = Q()
+
+    if blog_details_hero_search_input:
+
+        product_filters &= Q(name__icontains=blog_details_hero_search_input)
+
+        blog_filters &= Q(title__icontains=blog_details_hero_search_input)
+
+        products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
+        blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+
+        context = {
+            'title' : 'Search',
+            'products' : products,
+            'blogs' : blogs,
+            'departments' : ProductCategory.objects.all(),
+        }
+
+        return render(request, 'search.html', context)
+
     context = {
         'title' : 'Ogani Blog Details',
         'blogs' : Blog.objects.all().order_by('-created_at'),

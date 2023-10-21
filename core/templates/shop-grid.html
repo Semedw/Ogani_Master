@@ -90,7 +90,7 @@
                         </div>
                         <ul>
                             {% for department in departments %}
-                            <li><a href="{% url 'departments' department.slug %}">{{ department.title }}</a></li>
+                            <li><a href="{% comment %}{% url 'departments' department.slug %} {% endcomment %}">{{ department.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -103,7 +103,7 @@
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input name="shop_hero_search" type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
