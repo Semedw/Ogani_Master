@@ -85,7 +85,7 @@
                         </div>
                         <ul>
                             {% for department in departments %}
-                            <li><a href="{% url 'departments' department.slug %}">{{ department.title }}</a></li>
+                                <li><a href="{% url 'shop' %}?category_filter={{ department.id }}">{{ department.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

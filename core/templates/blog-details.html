@@ -85,17 +85,7 @@
                         </div>
                         <ul>
                             {% for department in departments %}
-                            <li><a href="#">{{ department.title }}</a></li>
-                            <!-- <li><a href="#">Vegetables</a></li>
-                            <li><a href="#">Fruit & Nut Gifts</a></li>
-                            <li><a href="#">Fresh Berries</a></li>
-                            <li><a href="#">Ocean Foods</a></li>
-                            <li><a href="#">Butter & Eggs</a></li>
-                            <li><a href="#">Fastfood</a></li>
-                            <li><a href="#">Fresh Onion</a></li>
-                            <li><a href="#">Papayaya & Crisps</a></li>
-                            <li><a href="#">Oatmeal</a></li>
-                            <li><a href="#">Fresh Bananas</a></li> -->
+                                <li><a href="{% url 'shop' %}?category_filter={{ department.id }}">{{ department.title }}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
