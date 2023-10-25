@@ -98,6 +98,13 @@ class Banner(BaseModel):
     category = models.ForeignKey('ProductCategory', on_delete=models.CASCADE, related_name='banner')
     img = models.ImageField(upload_to='blog', null=True, blank = True)
 
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = _('Banner')
+        verbose_name_plural = _('Banners')
+
 
 class Settings(BaseModel):
     address = models.TextField()
@@ -190,3 +197,11 @@ class Size(BaseModel):
 
     def __str__(self):
         return self.title
+    
+
+class SideBanner(BaseModel):
+    image = models.ImageField()
+
+    class Meta:
+        verbose_name = _('Side Banner')
+        verbose_name_plural = _('Side Banners')

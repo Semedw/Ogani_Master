@@ -108,14 +108,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero__item set-bg" data-setbg="{% static 'img/hero/banner.jpg' %}">
+                    {% for banner in banner %}
+                    <div class="hero__item set-bg" data-setbg="{{ banner.img.url }}">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
+                            <span>{{ banner.category }}</span>
+                            <h2>{{ banner.title }}</h2>
+                            <p>{{ banner.description }}</p>
                             <a href="#" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -186,16 +188,18 @@
     <div class="banner">
         <div class="container">
             <div class="row">
+                {% for side in side_banners %}
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="{% static 'img/banner/banner-1.jpg' %}" alt="">
+                        <img src="{{ side.image.url }}" alt="">
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                {% endfor %}
+                <!-- <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
                         <img src="{% static 'img/banner/banner-2.jpg' %}" alt="">
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 from core.forms import ContactForm
 from core.models import (Blog, Product, Settings, ProductCategory, 
                          BlogCategory, Discount_Product, Colors, Size,
+                         Banner, SideBanner
 
 )
 
@@ -46,6 +47,9 @@ def index(request):
             'toprated_products' : Product.objects.all().order_by('heart'),
             'review_products' : Product.objects.all().order_by('-price'),
             'departments' : ProductCategory.objects.all(),
+            'banner' : Banner.objects.filter(id=1),
+            'side_banners' : SideBanner.objects.all(),
+            
 
         }
 
@@ -121,7 +125,6 @@ def shop(request):
         'sizes' : Size.objects.all(),
         'search_input' : shop_search_input if shop_search_input else '',
         # 'products' : page_products,
-
         # 'filtered_data' : filtered_data,
 
     }
@@ -148,7 +151,7 @@ def blog(request):
             'title' : 'Search',
             'products' : products,
             'blogs' : blogs,
-            'departments' : ProductCategory.objects.all(),
+            'departments' : BlogCategory.objects.all(),
         }
 
         return render(request, 'search.html', context)
@@ -157,6 +160,7 @@ def blog(request):
     blog_search_input = request.GET.get('blog_search')
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
+    category_filter = request.GET.get('category_filter')
 
     filters = Q()
 
@@ -169,17 +173,21 @@ def blog(request):
             end_date = timezone.now().date()
         filters &= Q(created_at__date__range=[start_date, end_date])
 
+    if category_filter:
+        filters &= Q(category=category_filter)
+
     blogs = Blog.objects.filter(filters) if filters else Blog.objects.all()
 
-    # if blog_search_input is not None and blog_search_input != '':
-    #     blogs = Blog.objects.filter(title__icontains=blog_search_input)
-    # else:
-    #     blogs = Blog.objects.all()
+    # Pagination
+    paginator = Paginator(blogs, 4)
+    page = request.GET.get('page')
+    page_blogs = paginator.get_page(page)
 
     context = {
         'title': 'Ogani Blog',
-        'departments': ProductCategory.objects.all(),
-        'blogs': blogs,
+        'departments': BlogCategory.objects.all(),
+        # 'blogs': blogs,
+        'blogs' : page_blogs,
         'search_input' : blog_search_input if blog_search_input else '',
         'recent': Blog.objects.all().order_by('-created_at'),
         'start_date' : start_date,
