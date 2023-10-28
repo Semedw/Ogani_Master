@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.utils.translation import gettext as _
@@ -205,3 +206,14 @@ class SideBanner(BaseModel):
     class Meta:
         verbose_name = _('Side Banner')
         verbose_name_plural = _('Side Banners')
+
+
+class Subscriber(BaseModel):
+    title = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name = _('Subscriber')
+        verbose_name_plural = _('Subscribers')
+
+    def __str__(self):
+        return self.title
