@@ -35,6 +35,8 @@ def index(request):
             'products' : products,
             'blogs' : blogs,
             'departments' : ProductCategory.objects.all(),
+            'blogs_count' : blogs.count(),
+            'product_count' : products.count(),
         }
 
         return render(request, 'search.html', context)
@@ -76,6 +78,8 @@ def shop(request):
             'products' : products,
             'blogs' : blogs,
             'departments' : ProductCategory.objects.all(),
+            'blogs_count' : blogs.count(),
+            'product_count' : products.count(),
         }
 
         return render(request, 'search.html', context)
@@ -84,9 +88,6 @@ def shop(request):
     category_filter = request.GET.get('category_filter')
     color_filter = request.GET.get('color_filter')
     size_filter = request.GET.get('size_filter')
-    # start_date = request.GET.get('start_date')
-    # end_date = request.GET.get('end_date')
-    # category_id = request.GET.get('category')
 
     # Initial filters with Q()
     filters = Q()
@@ -152,6 +153,8 @@ def blog(request):
             'products' : products,
             'blogs' : blogs,
             'departments' : BlogCategory.objects.all(),
+            'blogs_count' : blogs.count(),
+            'product_count' : products.count(),
         }
 
         return render(request, 'search.html', context)
@@ -217,6 +220,8 @@ def contact(request):
             'products' : products,
             'blogs' : blogs,
             'departments' : ProductCategory.objects.all(),
+            'blogs_count' : blogs.count(),
+            'product_count' : products.count(),
         }
 
         return render(request, 'search.html', context)
@@ -259,6 +264,8 @@ def shop_details(request, slug):
             'products' : products,
             'blogs' : blogs,
             'departments' : ProductCategory.objects.all(),
+            'blogs_count' : blogs.count(),
+            'product_count' : products.count(),
         }
 
         return render(request, 'search.html', context)
@@ -294,6 +301,8 @@ def blog_details(request, slug):
             'products' : products,
             'blogs' : blogs,
             'departments' : ProductCategory.objects.all(),
+            'blogs_count' : blogs.count(),
+            'product_count' : products.count(),
         }
 
         return render(request, 'search.html', context)
@@ -365,6 +374,8 @@ def search(request):
         'products': products,
         'blogs': blogs,
         'departments': ProductCategory.objects.all(),
+        'blogs_count' : blogs.count(),
+        'product_count' : products.count(),
     }
 
     return render(request, 'search.html', context)

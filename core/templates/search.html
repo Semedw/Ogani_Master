@@ -54,7 +54,9 @@
   <!-- Search Results -->
   <div class="container">
     <!-- Product Results -->
+    {% if product_count != 0 %}
     <h3 class="section-title">Products</h3>
+    {% endif %}
     <div class="row">
       {% for product in products %}
       <div class="col-lg-4 col-md-6 col-sm-6">
@@ -78,7 +80,9 @@
 
   <!-- Blogs Results -->
   <section>
+    {% if blogs_count != 0 %}
     <h3 class="section-title mt-5">Blogs</h3>
+    {% endif %}
     <div class="row">
       {% for blog in blogs %}
       <div class="col-lg-3 col-md-3 col-sm-6">
