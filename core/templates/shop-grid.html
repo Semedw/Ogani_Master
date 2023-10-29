@@ -330,19 +330,19 @@
                     <!-- Pagination -->
                     <div style="text-align: center;" class="mb-3">
                         {% if all_products.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Previous</a>
+                            <a href="?page={{ all_products.previous_page_number }}" class="btn btn-primary">Previous</a>
                         {% endif %}
 
                         {% for i in all_products.paginator.page_range %}
-                        {% if all_products.number == i %}
-                        <a href="?page={{ i }}" class="active btn btn-primary">{{ i }}</a>
-                        {% else %}
-                        <a href="?page={{ i }}" class="btn btn-primary">{{ i }}</a>
-                        {% endif %}
+                            {% if all_products.number == i %}
+                                <a href="?page={{ i }}" class="active btn btn-primary">{{ i }}</a>
+                            {% else %}
+                                <a href="?page={{ i }}" class="btn btn-primary">{{ i }}</a>
+                            {% endif %}
                         {% endfor %}
 
                         {% if all_products.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Next</a>
+                            <a href="?page={{ all_products.next_page_number }}" class="btn btn-primary">Next</a>
                         {% endif %}
                     </div>
             </div>
