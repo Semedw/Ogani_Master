@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.utils import timezone
 from django.core.paginator import Paginator
+from decimal import Decimal
 
 
 from core.forms import ContactForm
@@ -88,6 +89,10 @@ def shop(request):
     category_filter = request.GET.get('category_filter')
     color_filter = request.GET.get('color_filter')
     size_filter = request.GET.get('size_filter')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+
+
 
     # Initial filters with Q()
     filters = Q()
@@ -103,6 +108,12 @@ def shop(request):
     
     if size_filter:
         filters &= Q(size=size_filter)
+
+    if min_price and max_price:
+        min_price_decimal = Decimal(min_price.replace('$', ''))
+        max_price_decimal = Decimal(max_price.replace('$', ''))
+        filters &= Q(price__gte=min_price_decimal, price__lte=max_price_decimal)
+
 
     # Fetch the news based on built filters
     products = Product.objects.filter(filters) if filters else Product.objects.all()

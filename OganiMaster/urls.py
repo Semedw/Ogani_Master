@@ -52,6 +52,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('core.api.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    # path('rosetta/', include('rosetta.urls')),
     # path('', include(core_urls)),
     # path('user/', include(user_urls)),
 ]

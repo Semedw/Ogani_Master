@@ -137,7 +137,7 @@
                     {% for department in departments %} 
                     <div class="col-lg-3">
                         <div class="categories__item set-bg" data-setbg="{{ department.image.url }}">
-                            <h5><a href="{% url 'departments' department.slug %}">{{ department.title }}</a></h5>
+                            <h5><a href="shop/?category_filter={{ department.id }}">{{ department.title }}</a></h5>
                         </div>
                     </div>
                     {% endfor %} 

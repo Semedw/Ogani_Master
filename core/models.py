@@ -18,7 +18,7 @@ class BaseModel(models.Model):
 class Product(BaseModel):
     name = models.CharField(max_length=255)
     content = RichTextField()
-    price = models.FloatField(default=0)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='product', null=True, blank = True)
     shipping_time = models.IntegerField(default=1)
     weight = models.FloatField(default=1)
