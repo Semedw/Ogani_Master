@@ -209,11 +209,11 @@ class SideBanner(BaseModel):
 
 
 class Subscriber(BaseModel):
-    title = models.CharField(max_length=255)
+    email = models.EmailField()
 
     class Meta:
         verbose_name = _('Subscriber')
         verbose_name_plural = _('Subscribers')
 
     def __str__(self):
-        return self.title
+        return self.email

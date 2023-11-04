@@ -341,7 +341,7 @@
                                 <li><i class="fa fa-comment-o"></i>{{ blog.comment }}</li>
                             </ul>
                             <h5><a href="{% url 'blog_details' blog.slug %}">{{ blog.title }}</a></h5>
-                            <p>{{ blog.content|safe }}</p>
+                            <p>{{ blog.content|truncatechars:100|safe }}</p>
                         </div>
                     </div>
                 </div>

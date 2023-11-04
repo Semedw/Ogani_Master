@@ -200,7 +200,7 @@
                                         <li><i class="fa fa-comment-o"></i>{{ blog.comment }}</li>
                                     </ul>
                                     <h5><a href="{% url 'blog_details' blog.slug %}">{{ blog.title }}</a></h5>
-                                    <p>{{ blog.content|safe }}</p>
+                                    <p>{{ blog.content|truncatechars:100|safe }}</p>
                                     <a href="{% url 'blog_details' blog.slug %}" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
                                 </div>
                             </div>

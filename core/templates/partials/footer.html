@@ -41,9 +41,10 @@
                 <div class="footer__widget">
                     <h6>Join Our Newsletter Now</h6>
                     <p>Get E-mail updates about our latest shop and special offers.</p>
-                    <form action="#">
-                        <input type="text" placeholder="Enter your mail">
-                        <button type="submit" class="site-btn">Subscribe</button>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input placeholder="Enter your mail" id="emailinput">
+                        <button id="emailbutton" type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__widget__social">
                         <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
@@ -65,5 +66,44 @@ Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.</p
             </div>
         </div> -->
     </div>
+
+
 </footer>
 <!-- Footer Section End -->
+
+
+<script>
+    SubsciberLogic = {
+        emailManager(email) {
+            fetch('/api/subscriber/', {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    'email': email,
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    subscribeModalLongTitle = document.getElementById('subscribeModalLongTitle');
+                    emailinput.value = '';
+                    alert('Successfully subcribed!')
+                });
+        }
+    }
+
+    emailbutton = document.getElementById('emailbutton')
+    emailinput = document.getElementById('emailinput')
+
+    emailbutton.onclick = function (e) {
+        e.preventDefault();
+        console.log("emailinput.value", emailinput.value);
+        email = emailinput.value;
+        SubsciberLogic.emailManager(email);
+    }
+
+</script>
+

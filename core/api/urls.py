@@ -19,4 +19,8 @@ urlpatterns = [
     path('get-contact/', GetContactAPIView.as_view(), name='get_product'),
     path('get-color/', GetColorAPIView.as_view(), name='get_product'),
     path('get-size/', GetSizeAPIViews.as_view(), name='get_product'),
+    # path('get-subscriber/', GetSubscriberAPIViews.as_view(), name='get_subscriber'),
+    # path('create-subscriber/', CreateSubscriberAPIViews.as_view(), name='create_subscriber'),
+    # path('update-subscriber/', UpdateSubscriberAPIViews.as_view(), name='update_subscriber'),
+    path('subscriber/', SubsciberApiView.as_view(), name='subscriber'),
 ]

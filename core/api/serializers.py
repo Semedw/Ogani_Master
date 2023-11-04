@@ -1,5 +1,6 @@
 from core.models import *
-from rest_framework import serializers
+from rest_framework import routers, serializers
+
 
 
 # Product Serializers
@@ -133,3 +134,8 @@ class GetSizeSerializer(serializers.ModelSerializer):
         model = Size
         fields = ('title', )
 
+class SubscriberSerializer(serializers.ModelSerializer):
+    
+    class Meta():
+        model = Subscriber
+        fields = ['email',]

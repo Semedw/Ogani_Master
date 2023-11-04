@@ -213,13 +213,18 @@ USE_TZ = True
 
 
 
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    )
 }
 
 SWAGGER_SETTINGS = {
@@ -240,8 +245,8 @@ CELERY_TIMEZONE = 'Asia/Baku'
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'talehmammadli8@gmail.com'
-EMAIL_HOST_PASSWORD = 'vivocbmwjraglfgi'
+EMAIL_HOST_USER = 'smusazade2000@gmail.com'
+EMAIL_HOST_PASSWORD = 'sgniaxoujtmzwave'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
