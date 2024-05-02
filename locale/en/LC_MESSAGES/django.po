@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-17 11:59+0000\n"
+"POT-Creation-Date: 2023-11-04 19:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,68 +18,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: core/models.py:34
+#: core/models.py:35
 msgid "Product"
 msgstr ""
 
-#: core/models.py:35
+#: core/models.py:36
 msgid "Products"
 msgstr ""
 
-#: core/models.py:54
+#: core/models.py:55 core/templates/partials/header.html:75
 msgid "Blog"
 msgstr ""
 
-#: core/models.py:55
+#: core/models.py:56
 msgid "Blogs"
 msgstr ""
 
-#: core/models.py:72
+#: core/models.py:73
 msgid "Product Category"
 msgstr ""
 
-#: core/models.py:91
+#: core/models.py:92
 msgid "Blog Category"
 msgstr ""
 
-#: core/models.py:92
+#: core/models.py:93
 msgid "Blog Categories"
 msgstr ""
 
-#: core/models.py:109 core/models.py:110
+#: core/models.py:106
+msgid "Banner"
+msgstr ""
+
+#: core/models.py:107
+msgid "Banners"
+msgstr ""
+
+#: core/models.py:120 core/models.py:121
 msgid "Settings"
 msgstr ""
 
-#: core/models.py:130
+#: core/models.py:141
 msgid "Discount Product"
 msgstr ""
 
-#: core/models.py:131
+#: core/models.py:142
 msgid "Discount_Products"
 msgstr ""
 
-#: core/models.py:150
+#: core/models.py:161
 msgid "Discount Category"
 msgstr ""
 
-#: core/models.py:151
+#: core/models.py:162
 msgid "Discount Categories"
 msgstr ""
 
-#: core/models.py:160 core/templates/partials/header.html:82
+#: core/models.py:171 core/templates/partials/header.html:76
 msgid "Contact"
 msgstr ""
 
-#: core/models.py:172
+#: core/models.py:183
 msgid "Color"
 msgstr ""
 
-#: core/models.py:173
+#: core/models.py:184
 msgid "Colors"
 msgstr ""
 
-#: core/models.py:185 core/models.py:186
+#: core/models.py:196 core/models.py:197
 msgid "Size"
+msgstr ""
+
+#: core/models.py:207
+msgid "Side Banner"
+msgstr ""
+
+#: core/models.py:208
+msgid "Side Banners"
+msgstr ""
+
+#: core/models.py:215
+msgid "Subscriber"
+msgstr ""
+
+#: core/models.py:216
+msgid "Subscribers"
+msgstr ""
+
+#: core/templates/partials/header.html:73
+msgid "Home"
 msgstr ""
 
 #: core/templates/partials/header.html:74

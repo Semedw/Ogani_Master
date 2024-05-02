@@ -50,7 +50,7 @@ def index(request):
             'toprated_products' : Product.objects.all().order_by('heart'),
             'review_products' : Product.objects.all().order_by('-price'),
             'departments' : ProductCategory.objects.all(),
-            'banner' : Banner.objects.filter(id=1),
+            'banner' : Banner.objects.filter(id=2),
             'side_banners' : SideBanner.objects.all(),
             
 
@@ -73,6 +73,7 @@ def shop(request):
 
         products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
         blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+        
 
         context = {
             'title' : 'Search',
@@ -81,6 +82,9 @@ def shop(request):
             'departments' : ProductCategory.objects.all(),
             'blogs_count' : blogs.count(),
             'product_count' : products.count(),
+            
+
+
         }
 
         return render(request, 'search.html', context)
@@ -117,6 +121,8 @@ def shop(request):
 
     # Fetch the news based on built filters
     products = Product.objects.filter(filters) if filters else Product.objects.all()
+    discount_products = Discount_Product.objects.filter(product_filters) if product_filters else Discount_Product.objects.all()
+    
 
     product_count = products.count()
 
@@ -132,7 +138,7 @@ def shop(request):
         'latest_products' : Product.objects.all().order_by('-created_at'),
         'all_products' : page_products,
         'product_count' : product_count,
-        'discount_objects' : Discount_Product.objects.all(),
+        'discount_objects' : discount_products,
         'colors' : Colors.objects.all(),
         'sizes' : Size.objects.all(),
         'search_input' : shop_search_input if shop_search_input else '',
