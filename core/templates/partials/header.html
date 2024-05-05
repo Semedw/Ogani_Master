@@ -70,13 +70,16 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
-                        <li><a href="{% url 'shop' %}">{% trans 'Shop' %}</a></li>
-                        <li><a href="{% url 'blog' %}">{% trans 'Blog' %}</a></li>
-                        <li><a href="{% url 'contact' %}">{% trans 'Contact' %}</a></li>
+                        <li {% if request.resolver_match.url_name == 'home' %} class="active"{% endif %}><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                        <li {% if request.resolver_match.url_name == 'shop' %} class="active"{% endif %}><a href="{% url 'shop' %}">{% trans 'Shop' %}</a></li>
+                        <li {% if request.resolver_match.url_name == 'blog' %} class="active"{% endif %}><a href="{% url 'blog' %}">{% trans 'Blog' %}</a></li>
+                        <li {% if request.resolver_match.url_name == 'contact' %} class="active"{% endif %}><a href="{% url 'contact' %}">{% trans 'Contact' %}</a></li>
                     </ul>
                 </nav>
             </div>
+            
+            
+            
             <!-- <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
