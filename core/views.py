@@ -4,9 +4,10 @@ from django.db.models import Q
 from django.utils import timezone
 from django.core.paginator import Paginator
 from decimal import Decimal
+from django.http import JsonResponse
 
 
-from core.forms import ContactForm
+from core.forms import ContactForm, PaymentForm
 from core.models import (Blog, Product, Settings, ProductCategory, 
                          BlogCategory, Discount_Product, Colors, Size,
                          Banner, SideBanner
@@ -30,6 +31,7 @@ def index(request):
 
         products = Product.objects.filter(product_filters) if product_filters else Product.objects.all()
         blogs = Blog.objects.filter(blog_filters) if blog_filters else Blog.objects.all()
+        suggestions = Product.objects.filter(name__icontains = home_search_input)
 
         context = {
             'title' : 'Search',
@@ -38,6 +40,9 @@ def index(request):
             'departments' : ProductCategory.objects.all(),
             'blogs_count' : blogs.count(),
             'product_count' : products.count(),
+            'suggestions' : suggestions,
+            'home_search' : home_search_input,
+            
         }
 
         return render(request, 'search.html', context)
@@ -396,3 +401,24 @@ def search(request):
     }
 
     return render(request, 'search.html', context)
+
+
+def payment(request):
+
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('payment')
+    else:
+        form = PaymentForm()
+    
+    
+    context = {
+        'title' : 'Payment',
+        'forms' : form
+    }
+
+
+
+    return render(request, 'payment.html', context)

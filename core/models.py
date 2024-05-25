@@ -217,3 +217,12 @@ class Subscriber(BaseModel):
 
     def __str__(self):
         return self.email
+    
+
+class Payment(BaseModel):
+    name = models.CharField(max_length=255)
+    card_num = models.CharField(max_length=100)
+    cvv = models.CharField(max_length=3)
+    billing_address = models.TextField()
+    city = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)

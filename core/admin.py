@@ -4,7 +4,8 @@ from modeltranslation.admin import TranslationAdmin
 
 from .models import (
     Blog, ProductCategory, BlogCategory, Banner, Settings, Product,
-    Discount_Product, Discount_category, Contact, Colors, Size, SideBanner, Subscriber
+    Discount_Product, Discount_category, Contact, Colors, Size, SideBanner, Subscriber,
+    Payment
 )
 
 
@@ -18,6 +19,7 @@ admin.site.register(Colors)
 admin.site.register(Size)
 admin.site.register(SideBanner)
 admin.site.register(Subscriber)
+admin.site.register(Payment)
 
 
 @admin.register(Blog)

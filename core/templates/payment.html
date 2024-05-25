@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="contact-form spad">
+    <div class="container">
+        <form action="#" method="post" >
+            {% csrf_token %}
+            {% for field in forms %}
+            {{ field }}
+            {% endfor %}
+            <button type="submit" class="site-btn">BUY</button>
+        </form>
+    </div>
+</div>
+        <!-- <div class="form-group">
+            <label for="cardName">Name on Card</label>
+            <input type="text" class="form-control" id="cardName" name="card_name" required>
+        </div>
+        <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" name="card_number" required>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="text" class="form-control" id="cvv" name="cvv" required>
+        </div>
+        <div class="form-group">
+            <label for="billingAddress">Billing Address</label>
+            <input type="text" class="form-control" id="billingAddress" name="billing_address" required>
+        </div>
+        <div class="form-group">
+            <label for="billingCity">City</label>
+            <input type="text" class="form-control" id="billingCity" name="billing_city" required>
+        </div>
+        <div class="form-group">
+            <label for="billingCountry">Country</label>
+            <input type="text" class="form-control" id="billingCountry" name="billing_country" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Payment</button> -->
+    </form>
+</div>
+{% endblock %}
